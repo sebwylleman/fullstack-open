@@ -12,10 +12,13 @@ const App = () => {
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
 
+  const goodClick = () => {
+    console.log("clicked the button")
+  }
   return (
     <div>
       <Heading text="give feedback" />
-      <Button label="good" />
+      <Button label="good" onClick={goodClick} />
       <Button label="neutral" />
       <Button label="bad" />
       <Heading text="statistics" />
