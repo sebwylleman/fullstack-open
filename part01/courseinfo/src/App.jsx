@@ -6,7 +6,7 @@ const Content = (props) => (
   </p>
 )
 
-const Total = (props) => <p>Total number of exercises : {props.total}</p>
+const Total = (props) => <p>Number of exercises : {props.total}</p>
 
 const App = () => {
   const course = "Half Stack application development"
