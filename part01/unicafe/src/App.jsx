@@ -14,6 +14,7 @@ const Stats = ({ feedbackScore }) => {
       <p>bad {feedbackScore.bad}</p>
       <p>all {feedbackScore.all}</p>
       <p>average {feedbackScore.average}</p>
+      <p>positive {feedbackScore.positive} %</p>
     </div>
   )
 }
@@ -27,6 +28,7 @@ const App = () => {
     bad: 0,
     all: 0,
     average: 0,
+    positive: 0,
   })
 
   const handleClick = (type) => {
@@ -42,11 +44,20 @@ const App = () => {
           (type === "good" ? 1 : type === "neutral" ? 0 : -1)) /
         newAll
     }
+
+    const newPositive = (type) => {
+      if (type === "good") {
+        return 100 * ((feedbackScore.good + 1) / newAll)
+      }
+      return 100 * (feedbackScore.good / newAll)
+    }
+
     setfeedbackScore({
       ...feedbackScore,
       [type]: updatedScore,
       all: newAll,
       average: newAverage,
+      positive: newPositive(type),
     })
   }
 
