@@ -6,12 +6,14 @@ const Button = ({ handleClick, label }) => (
   <button onClick={handleClick}>{label}</button>
 )
 
-const Feedback = ({ feedbackScore }) => {
+const Stats = ({ feedbackScore }) => {
   return (
     <div>
       <p>good {feedbackScore.good}</p>
       <p>neutral {feedbackScore.neutral}</p>
       <p>bad {feedbackScore.bad}</p>
+      <p>all {feedbackScore.all}</p>
+      <p>average {feedbackScore.average}</p>
     </div>
   )
 }
@@ -23,10 +25,29 @@ const App = () => {
     good: 0,
     neutral: 0,
     bad: 0,
+    all: 0,
+    average: 0,
   })
 
   const handleClick = (type) => {
-    setfeedbackScore({ ...feedbackScore, [type]: feedbackScore[type] + 1 })
+    const updatedScore = feedbackScore[type] + 1
+    const newAll =
+      feedbackScore.good + feedbackScore.neutral + feedbackScore.bad + 1
+    let newAverage = 0
+    if (newAll !== 0) {
+      newAverage =
+        (feedbackScore.good * 1 +
+          feedbackScore.neutral * 0 +
+          feedbackScore.bad * -1 +
+          (type === "good" ? 1 : type === "neutral" ? 0 : -1)) /
+        newAll
+    }
+    setfeedbackScore({
+      ...feedbackScore,
+      [type]: updatedScore,
+      all: newAll,
+      average: newAverage,
+    })
   }
 
   return (
@@ -36,7 +57,7 @@ const App = () => {
       <Button handleClick={() => handleClick("neutral")} label="neutral" />
       <Button handleClick={() => handleClick("bad")} label="bad" />
       <Title text="statistics" />
-      <Feedback feedbackScore={feedbackScore} />
+      <Stats feedbackScore={feedbackScore} />
     </div>
   )
 }
