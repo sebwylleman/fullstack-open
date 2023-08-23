@@ -7,6 +7,9 @@ const Button = ({ handleClick, label }) => (
 )
 
 const Stats = ({ feedbackScore }) => {
+  if (feedbackScore.all === 0) {
+    return <p>No feedback given</p>
+  }
   return (
     <div>
       <p>good {feedbackScore.good}</p>
