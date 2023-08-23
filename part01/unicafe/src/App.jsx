@@ -6,18 +6,24 @@ const Button = ({ handleClick, label }) => (
   <button onClick={handleClick}>{label}</button>
 )
 
+const Statline = ({ text, value }) => (
+  <p>
+    {text} {value}
+  </p>
+)
+
 const Stats = ({ feedbackScore }) => {
   if (feedbackScore.all === 0) {
     return <p>No feedback given</p>
   }
   return (
     <div>
-      <p>good {feedbackScore.good}</p>
-      <p>neutral {feedbackScore.neutral}</p>
-      <p>bad {feedbackScore.bad}</p>
-      <p>all {feedbackScore.all}</p>
-      <p>average {feedbackScore.average}</p>
-      <p>positive {feedbackScore.positive} %</p>
+      <Statline text="good" value={feedbackScore.good} />
+      <Statline text="neutral" value={feedbackScore.neutral} />
+      <Statline text="bad" value={feedbackScore.bad} />
+      <Statline text="all" value={feedbackScore.all} />
+      <Statline text="average" value={feedbackScore.average} />
+      <Statline text="positive" value={feedbackScore.positive} />
     </div>
   )
 }
