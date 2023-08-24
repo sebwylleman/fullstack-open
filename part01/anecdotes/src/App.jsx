@@ -12,7 +12,7 @@ const Anecdote = ({ text, votesCount }) => {
 }
 
 const Winner = ({ bestAnecdote, allVotes }) => {
-  if (allVotes.some((number) => number !== 0)) {
+  if (allVotes.some((count) => count !== 0)) {
     return <p>{bestAnecdote}</p>
   }
   return <p>Vote for your favourite anecdote</p>
@@ -34,23 +34,23 @@ const App = () => {
     "The only way to go fast, is to go well.",
   ]
 
-  const getrandomIndex = () => Math.floor(Math.random() * anecdotes.length)
+  const getRandomIndex = () => Math.floor(Math.random() * anecdotes.length)
 
-  const [selected, setSelected] = useState(getrandomIndex)
-  const [votes, setVote] = useState(Array(anecdotes.length).fill(0))
+  const [selected, setSelected] = useState(getRandomIndex)
+  const [votes, setVotes] = useState(Array(anecdotes.length).fill(0))
 
   const handleAnecdoteClick = () => {
-    const newRandomIndex = getrandomIndex()
+    const newRandomIndex = getRandomIndex()
     setSelected(newRandomIndex)
   }
 
   const handleVoteClick = () => {
     const newVotes = [...votes]
     newVotes[selected] += 1
-    setVote(newVotes)
+    setVotes(newVotes)
   }
 
-  const mostVoted = () => {
+  const getMostVotedAnecdote = () => {
     const maxVote = Math.max(...votes)
     const maxIndex = votes.indexOf(maxVote)
     return anecdotes[maxIndex]
@@ -63,7 +63,7 @@ const App = () => {
       <Button handleClick={handleVoteClick} label="vote" />
       <Button handleClick={handleAnecdoteClick} label="next anecdote" />
       <Header text="Anecdote with most votes" />
-      <Winner bestAnecdote={mostVoted()} allVotes={votes} />
+      <Winner bestAnecdote={getMostVotedAnecdote()} allVotes={votes} />
     </>
   )
 }
