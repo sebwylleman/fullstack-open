@@ -9,6 +9,10 @@ const Anecdote = ({ text, votesCount }) => {
   )
 }
 
+const Button = ({ handleClick, label }) => (
+  <button onClick={handleClick}>{label}</button>
+)
+
 const App = () => {
   const anecdotes = [
     "If it hurts, do it more often.",
@@ -34,6 +38,7 @@ const App = () => {
   return (
     <>
       <Anecdote text={anecdotes[selected]} votesCount={votes} />
+      <Button handleClick={generateAnecdote} label="next anecdote" />
     </>
   )
 }
