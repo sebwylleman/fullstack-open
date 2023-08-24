@@ -11,6 +11,13 @@ const Anecdote = ({ text, votesCount }) => {
   )
 }
 
+const Winner = ({ bestAnecdote, allVotes }) => {
+  if (allVotes.some((number) => number !== 0)) {
+    return <p>{bestAnecdote}</p>
+  }
+  return <p>Vote for your favourite anecdote</p>
+}
+
 const Button = ({ handleClick, label }) => (
   <button onClick={handleClick}>{label}</button>
 )
@@ -43,6 +50,12 @@ const App = () => {
     setVote(newVotes)
   }
 
+  const mostVoted = () => {
+    const maxVote = Math.max(...votes)
+    const maxIndex = votes.indexOf(maxVote)
+    return anecdotes[maxIndex]
+  }
+
   return (
     <>
       <Header text="Anecdote of the day" />
@@ -50,6 +63,7 @@ const App = () => {
       <Button handleClick={handleVoteClick} label="vote" />
       <Button handleClick={handleAnecdoteClick} label="next anecdote" />
       <Header text="Anecdote with most votes" />
+      <Winner bestAnecdote={mostVoted()} allVotes={votes} />
     </>
   )
 }
