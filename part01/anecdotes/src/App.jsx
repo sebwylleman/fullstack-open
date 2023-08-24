@@ -16,12 +16,12 @@ const App = () => {
     "The only way to go fast, is to go well.",
   ]
 
-  const randomIndex = Math.floor(Math.random() * anecdotes.length)
+  const getrandomIndex = () => Math.floor(Math.random() * anecdotes.length)
 
-  const [selected, setSelected] = useState(randomIndex)
+  const [selected, setSelected] = useState(getrandomIndex)
 
   const generateAnecdote = () => {
-    const newRandomIndex = Math.floor(Math.random() * anecdotes.length)
+    const newRandomIndex = getrandomIndex
     setSelected(newRandomIndex)
   }
 
