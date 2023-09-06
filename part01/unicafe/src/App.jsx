@@ -17,6 +17,13 @@ const App = () => {
 
   const all = good + neutral + bad
 
+  const average = () => {
+    if (all === 0) {
+      return 0
+    }
+    return (good * 1 + neutral * 0 - bad * 1) / all
+  }
+
   return (
     <div>
       <Heading text="give feedback" />
@@ -28,6 +35,7 @@ const App = () => {
       <Stats type={"neutral"} score={neutral} />
       <Stats type={"bad"} score={bad} />
       <Stats type={"all"} score={all} />
+      <Stats type={"average"} score={average()} />
     </div>
   )
 }
