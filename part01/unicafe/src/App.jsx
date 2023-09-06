@@ -4,9 +4,9 @@ const Heading = ({ text }) => <h1>{text}</h1>
 
 const Button = ({ vote, label }) => <button onClick={vote}>{label}</button>
 
-const Stats = ({ label, feedback }) => (
+const Stats = ({ type, score }) => (
   <p>
-    {label} {feedback}
+    {type} {score}
   </p>
 )
 const App = () => {
@@ -22,9 +22,9 @@ const App = () => {
       <Button vote={() => setNeutral(neutral + 1)} label="neutral" />
       <Button vote={() => setBad(bad + 1)} label="bad" />
       <Heading text="statistics" />
-      <Stats label={"good"} feedback={good} />
-      <Stats label={"neutral"} feedback={neutral} />
-      <Stats label={"bad"} feedback={bad} />
+      <Stats type={"good"} score={good} />
+      <Stats type={"neutral"} score={neutral} />
+      <Stats type={"bad"} score={bad} />
     </div>
   )
 }
