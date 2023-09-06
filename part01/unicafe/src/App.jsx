@@ -28,7 +28,7 @@ const App = () => {
     if (all === 0) {
       return 0
     }
-    return good / all
+    return `${good / all} %`
   }
 
   return (
