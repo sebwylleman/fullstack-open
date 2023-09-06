@@ -5,9 +5,14 @@ const Heading = ({ text }) => <h1>{text}</h1>
 const Button = ({ vote, label }) => <button onClick={vote}>{label}</button>
 
 const StatisticLine = ({ feedback, value }) => (
-  <p>
-    {feedback} {value}
-  </p>
+  <table>
+    <tbody>
+      <tr>
+        <td>{feedback}</td>
+        <td>{value}</td>
+      </tr>
+    </tbody>
+  </table>
 )
 
 const Statistics = (props) => {
