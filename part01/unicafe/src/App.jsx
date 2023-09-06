@@ -4,11 +4,21 @@ const Heading = ({ text }) => <h1>{text}</h1>
 
 const Button = ({ vote, label }) => <button onClick={vote}>{label}</button>
 
-const Stats = ({ type, score }) => (
-  <p>
-    {type} {score}
-  </p>
-)
+const Statistics = (props) => {
+  if (props.all === 0) {
+    return "No feedback given"
+  }
+  return (
+    <div>
+      <p>good {props.good}</p>
+      <p>neutral {props.neutral}</p>
+      <p>bad {props.bad}</p>
+      <p>all {props.all}</p>
+      <p>average {props.average}</p>
+      <p>positive {props.positive}</p>
+    </div>
+  )
+}
 const App = () => {
   // save clicks of each button to its own state
   const [good, setGood] = useState(0)
@@ -38,12 +48,14 @@ const App = () => {
       <Button vote={() => setNeutral(neutral + 1)} label="neutral" />
       <Button vote={() => setBad(bad + 1)} label="bad" />
       <Heading text="statistics" />
-      <Stats type={"good"} score={good} />
-      <Stats type={"neutral"} score={neutral} />
-      <Stats type={"bad"} score={bad} />
-      <Stats type={"all"} score={all} />
-      <Stats type={"average"} score={average()} />
-      <Stats type={"positive"} score={positive()} />
+      <Statistics
+        good={good}
+        neutral={neutral}
+        bad={bad}
+        all={all}
+        average={average()}
+        positive={positive()}
+      />
     </div>
   )
 }
