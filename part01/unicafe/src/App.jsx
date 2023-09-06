@@ -4,18 +4,24 @@ const Heading = ({ text }) => <h1>{text}</h1>
 
 const Button = ({ vote, label }) => <button onClick={vote}>{label}</button>
 
+const StatisticLine = ({ feedback, value }) => (
+  <p>
+    {feedback} {value}
+  </p>
+)
+
 const Statistics = (props) => {
   if (props.all === 0) {
     return "No feedback given"
   }
   return (
     <div>
-      <p>good {props.good}</p>
-      <p>neutral {props.neutral}</p>
-      <p>bad {props.bad}</p>
-      <p>all {props.all}</p>
-      <p>average {props.average}</p>
-      <p>positive {props.positive}</p>
+      <StatisticLine feedback="good" value={props.good} />
+      <StatisticLine feedback="neutral" value={props.neutral} />
+      <StatisticLine feedback="bad" value={props.bad} />
+      <StatisticLine feedback="all" value={props.all} />
+      <StatisticLine feedback="average" value={props.average} />
+      <StatisticLine feedback="positive" value={props.positive} />
     </div>
   )
 }
