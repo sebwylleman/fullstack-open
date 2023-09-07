@@ -1,4 +1,6 @@
-import { useState } from "react"
+import { Component, PureComponent, useState } from "react"
+
+const Heading = ({ title }) => <h1>{title}</h1>
 
 const Button = ({ handleClick, label }) => (
   <button onClick={handleClick}>{label}</button>
@@ -30,12 +32,21 @@ const App = () => {
     setVotes(newVotes)
   }
 
+  const displayMostVoted = () => {
+    const maxValue = Math.max(...votes)
+    const index = votes.indexOf(maxValue)
+    return anecdotes[index]
+  }
+
   return (
     <div>
+      <Heading title="Anecdote of the day" />
       <Button handleClick={updateSelectedAnecdote} label="next anecdote" />
       <Button handleClick={voteFavourite} label="vote" />
       <p>{anecdotes[selected]}</p>
       <p>has {votes[selected]} votes</p>
+      <Heading title="Anecdote with most votes" />
+      <p>{displayMostVoted()}</p>
     </div>
   )
 }
