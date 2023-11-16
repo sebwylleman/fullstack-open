@@ -10,6 +10,8 @@ const StatLine = ({ type, number }) => (
   </p>
 )
 const Statistics = (props) => {
+  if (props.calcTotal === 0) return <p>No feedback given</p>
+
   return (
     <div>
       <StatLine type="good" number={props.good} />
