@@ -9,6 +9,18 @@ const StatLine = ({ type, number }) => (
     {type} {number}
   </p>
 )
+const Statistics = (props) => {
+  return (
+    <div>
+      <StatLine type="good" number={props.good} />
+      <StatLine type="bad" number={props.neutral} />
+      <StatLine type="neutral" number={props.bad} />
+      <StatLine type="all" number={props.calcTotal} />
+      <StatLine type="average" number={props.calcAverage} />
+      <StatLine type="positive" number={props.calcPositive} />
+    </div>
+  )
+}
 
 const App = () => {
   // save clicks of each button to its own state
@@ -43,12 +55,14 @@ const App = () => {
       <Button handleClick={() => handleBad(bad + 1)} feedback="bad" />
 
       <Heading title="statistics" />
-      <StatLine type="good" number={good} />
-      <StatLine type="bad" number={neutral} />
-      <StatLine type="neutral" number={bad} />
-      <StatLine type="all" number={calcTotal} />
-      <StatLine type="average" number={calcAverage} />
-      <StatLine type="positive" number={calcPositive} />
+      <Statistics
+        good={good}
+        neutral={neutral}
+        bad={bad}
+        calcTotal={calcTotal}
+        calcAverage={calcAverage}
+        calcPositive={calcPositive}
+      />
     </div>
   )
 }
