@@ -5,9 +5,14 @@ const Heading = ({ title }) => <h1>{title}</h1>
 const Button = ({ handleClick, feedback }) => <button onClick={handleClick}>{feedback}</button>
 
 const StatLine = ({ type, number }) => (
-  <p>
-    {type} {number}
-  </p>
+  <table>
+    <tbody>
+      <tr>
+        <td>{type}</td>
+        <td>{number}</td>
+      </tr>
+    </tbody>
+  </table>
 )
 const Statistics = (props) => {
   if (props.calcTotal === 0) return <p>No feedback given</p>
