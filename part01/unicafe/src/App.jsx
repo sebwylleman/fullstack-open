@@ -4,9 +4,9 @@ const Heading = ({ title }) => <h1>{title}</h1>
 
 const Button = ({ handleClick, feedback }) => <button onClick={handleClick}>{feedback}</button>
 
-const StatLine = ({ feedback, count }) => (
+const StatLine = ({ type, number }) => (
   <p>
-    {feedback} {count}
+    {type} {number}
   </p>
 )
 
@@ -16,17 +16,23 @@ const App = () => {
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
 
-  const handleGood = (newValue) => {
-    setGood(newValue)
+  const handleGood = (newNumber) => {
+    setGood(newNumber)
   }
 
-  const handleNeutral = (newValue) => {
-    setNeutral(newValue)
+  const handleNeutral = (newNumber) => {
+    setNeutral(newNumber)
   }
 
-  const handleBad = (newValue) => {
-    setBad(newValue)
+  const handleBad = (newNumber) => {
+    setBad(newNumber)
   }
+
+  const calcTotal = good + neutral + bad
+
+  const calcAverage = calcTotal === 0 ? 0 : (good - bad) / calcTotal
+
+  const calcPositive = calcTotal === 0 ? '0 %' : `${(good / calcTotal) * 100} %`
 
   return (
     <div>
@@ -37,9 +43,12 @@ const App = () => {
       <Button handleClick={() => handleBad(bad + 1)} feedback="bad" />
 
       <Heading title="statistics" />
-      <StatLine feedback="good" count={good} />
-      <StatLine feedback="bad" count={neutral} />
-      <StatLine feedback="neutral" count={bad} />
+      <StatLine type="good" number={good} />
+      <StatLine type="bad" number={neutral} />
+      <StatLine type="neutral" number={bad} />
+      <StatLine type="all" number={calcTotal} />
+      <StatLine type="average" number={calcAverage} />
+      <StatLine type="positive" number={calcPositive} />
     </div>
   )
 }
