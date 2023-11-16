@@ -15,13 +15,17 @@ const App = () => {
   const [selected, setSelected] = useState(0)
   const [votes, setVotes] = useState(Array(anecdotes.length).fill(0))
 
-  const randomInt = () => Math.floor(Math.random() * anecdotes.length)
+  const randomInt = () => {
+    while (true) {
+      const candidate = Math.floor(Math.random() * anecdotes.length)
+      if (candidate !== votes) return candidate
+    }
+  }
 
   const addVote = (index) => {
-    // REWRITE THIS BIT AS IT IS SO THAT YOU MANAGED ON YOUR OWN TO TRULY UNDERSTAND WHY A COPY IS NECESSARY!
-    const copy = [...votes]
-    copy[index]++
-    setVotes(copy)
+    const newVotes = [...votes]
+    newVotes[index]++
+    setVotes(newVotes)
   }
 
   const getMostVoted = () => {
