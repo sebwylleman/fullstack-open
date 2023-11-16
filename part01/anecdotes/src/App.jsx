@@ -19,16 +19,24 @@ const App = () => {
 
   const addVote = (index) => {
     // REWRITE THIS BIT AS IT IS SO THAT YOU MANAGED ON YOUR OWN TO TRULY UNDERSTAND WHY A COPY IS NECESSARY!
-    const copy = { ...votes }
+    const copy = [...votes]
     copy[index]++
     setVotes(copy)
   }
+
+  const getMostVoted = () => {
+    const maxIndex = votes.indexOf(Math.max(...votes))
+    return maxIndex
+  }
   return (
     <div>
+      <h1>Anecdote of the Day</h1>
       <p>{anecdotes[selected]}</p>
       <p>has {votes[selected]} votes</p>
       <button onClick={() => setSelected(randomInt)}>next anecdote</button>
       <button onClick={() => addVote(selected)}>vote</button>
+      <h1>Anecdote with most Votes</h1>
+      <p>{anecdotes[getMostVoted()]}</p>
     </div>
   )
 }
