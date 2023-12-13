@@ -11,6 +11,7 @@ const StatisticLine = ({ feedback, label }) => (
 )
 
 const Statistics = ({ good, neutral, bad, average, positive }) => {
+  if (average === 0) return <p>No feeback given</p>
   return (
     <div>
       <StatisticLine feedback={good} label="good" />
