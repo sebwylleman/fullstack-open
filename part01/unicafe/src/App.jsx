@@ -4,10 +4,15 @@ const Button = ({ handleCLick, label }) => {
   return <button onClick={handleCLick}>{label}</button>
 }
 
-const StatisticLine = ({ feedback, label }) => (
-  <p>
-    {label}: {feedback}
-  </p>
+const StatisticLine = ({ label, feedback }) => (
+  <table>
+    <tbody>
+      <tr>
+        <td>{label}</td>
+        <td>{feedback}</td>
+      </tr>
+    </tbody>
+  </table>
 )
 
 const Statistics = ({ good, neutral, bad, average, positive }) => {
