@@ -1,8 +1,14 @@
 import { useState } from "react"
 
-const Button = ({ handleCLick, category }) => {
-  return <button onClick={handleCLick}>{category}</button>
+const Button = ({ handleCLick, label }) => {
+  return <button onClick={handleCLick}>{label}</button>
 }
+
+const Stats = ({ feedback, label }) => (
+  <p>
+    {label}: {feedback}
+  </p>
+)
 
 const App = () => {
   // save clicks of each button to its own state
@@ -13,9 +19,13 @@ const App = () => {
   return (
     <div>
       <h1>give feedback</h1>
-      <Button handleCLick={() => setGood(good + 1)} category="good" />
-      <Button handleCLick={() => setNeutral(neutral + 1)} category="neutral" />
-      <Button handleCLick={() => setBad(bad + 1)} category="bad" />
+      <Button handleCLick={() => setGood(good + 1)} label="good" />
+      <Button handleCLick={() => setNeutral(neutral + 1)} label="neutral" />
+      <Button handleCLick={() => setBad(bad + 1)} label="bad" />
+      <h1>statistics</h1>
+      <Stats feedback={good} label="good" />
+      <Stats feedback={neutral} label="neutral" />
+      <Stats feedback={bad} label="bad" />
     </div>
   )
 }
