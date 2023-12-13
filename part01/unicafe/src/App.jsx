@@ -4,11 +4,22 @@ const Button = ({ handleCLick, label }) => {
   return <button onClick={handleCLick}>{label}</button>
 }
 
-const Stats = ({ label, feedback }) => {
+const StatisticLine = ({ feedback, label }) => (
+  <p>
+    {label}: {feedback}
+  </p>
+)
+
+const Statistics = ({ good, neutral, bad, average, positive }) => {
   return (
-    <p>
-      {label}: {feedback}
-    </p>
+    <div>
+      <StatisticLine feedback={good} label="good" />
+      <StatisticLine feedback={neutral} label="neutral" />
+      <StatisticLine feedback={bad} label="bad" />
+      <StatisticLine feedback={good + neutral + bad} label="all" />
+      <StatisticLine feedback={average} label="average" />
+      <StatisticLine feedback={positive} label="positive" />
+    </div>
   )
 }
 
@@ -35,12 +46,13 @@ const App = () => {
       <Button handleCLick={() => setNeutral(neutral + 1)} label="neutral" />
       <Button handleCLick={() => setBad(bad + 1)} label="bad" />
       <h1>statistics</h1>
-      <Stats feedback={good} label="good" />
-      <Stats feedback={neutral} label="neutral" />
-      <Stats feedback={bad} label="bad" />
-      <Stats feedback={total} label="all" />
-      <Stats feedback={handleAverage()} label="average" />
-      <Stats feedback={handlePositive()} label="positive" />
+      <Statistics
+        good={good}
+        neutral={neutral}
+        bad={bad}
+        average={handleAverage()}
+        positive={handlePositive()}
+      />
     </div>
   )
 }
