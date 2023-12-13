@@ -4,11 +4,13 @@ const Button = ({ handleCLick, label }) => {
   return <button onClick={handleCLick}>{label}</button>
 }
 
-const Stats = ({ feedback, label }) => (
-  <p>
-    {label}: {feedback}
-  </p>
-)
+const Stats = ({ label, feedback }) => {
+  return (
+    <p>
+      {label}: {feedback}
+    </p>
+  )
+}
 
 const App = () => {
   // save clicks of each button to its own state
@@ -17,6 +19,14 @@ const App = () => {
   const [bad, setBad] = useState(0)
 
   const total = good + neutral + bad
+
+  const handleAverage = () => {
+    return total === 0 ? 0 : (good - bad) / total
+  }
+
+  const handlePositive = () => {
+    return total === 0 ? 0 : (good / total) * 100 + " %"
+  }
 
   return (
     <div>
@@ -29,8 +39,8 @@ const App = () => {
       <Stats feedback={neutral} label="neutral" />
       <Stats feedback={bad} label="bad" />
       <Stats feedback={total} label="all" />
-      <Stats feedback={(good - bad) / total} label="average" />
-      <Stats feedback={(good / total) * 100 + " %"} label="positive" />
+      <Stats feedback={handleAverage()} label="average" />
+      <Stats feedback={handlePositive()} label="positive" />
     </div>
   )
 }
