@@ -1,4 +1,3 @@
-/* eslint-disable no-extra-semi */
 import { useState } from "react";
 
 const App = () => {
@@ -9,12 +8,17 @@ const App = () => {
 
   const addPerson = (event) => {
     event.preventDefault();
-    const personObject = { name: newName };
-    setPersons(persons.concat(personObject));
+    const personExistsinPhonebook = persons.some(
+      (person) => person.name === newName
+    );
+    if (personExistsinPhonebook) {
+      alert(`${newName} is already added to phonebook`);
+    } else {
+      const personObject = { name: newName };
+      setPersons(persons.concat(personObject));
+    }
     setNewName("");
   };
-
-  console.log(persons);
 
   return (
     <div>
