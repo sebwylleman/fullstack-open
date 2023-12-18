@@ -1,4 +1,7 @@
 import { useState } from "react";
+import Filter from "./components/Filter";
+import Phonebook from "./components/Phonebook";
+import PersonForm from "./components/PersonForm";
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -35,39 +38,29 @@ const App = () => {
     setNewName("");
   };
 
-  const personsToShow = showAll
-    ? persons
-    : persons.filter((person) =>
-        person.name.toLowerCase().includes(stringSearch.toLowerCase())
-      );
-
   return (
     <div>
       <h2>Phonebook</h2>
-      <div>
-        filter shown with
-        <input value={stringSearch} onChange={handleStringSearch} />
-      </div>
-      <form onSubmit={addPerson}>
-        <div>
-          name:
-          <input value={newName} onChange={handleNameChange} />
-        </div>
-        <div>
-          number:
-          <input value={newNumber} onChange={handleNumChange} />
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
-      <h2>Numbers</h2>
 
-      {personsToShow.map((person) => (
-        <p key={person.name}>
-          {person.name} {person.number}
-        </p>
-      ))}
+      <Filter keyword={stringSearch} handleStringSearch={handleStringSearch} />
+
+      <h3>Add a new</h3>
+
+      <PersonForm
+        name={newName}
+        number={newNumber}
+        handleNameChange={handleNameChange}
+        handleNumChange={handleNumChange}
+        addPerson={addPerson}
+      />
+
+      <h3>Numbers</h3>
+
+      <Phonebook
+        persons={persons}
+        stringSearch={stringSearch}
+        showAll={showAll}
+      />
     </div>
   );
 };
