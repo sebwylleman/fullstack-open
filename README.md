@@ -1,1 +1,1 @@
-# My personal submissions for *[full stack open](https://fullstackopen.com/en/)*
+My personal submissions for *[full stack open](https://fullstackopen.com/en/)*
